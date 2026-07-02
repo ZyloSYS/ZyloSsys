@@ -2,26 +2,26 @@
    ZylosSystems — Design System
 ========================================================= */
 :root {
-  --bg: #0a0e17;
-  --bg-alt: #0d1220;
-  --surface: #111827;
-  --surface-2: #161f33;
-  --border: #232c42;
+  --bg: #000000;
+  --bg-alt: #0a0a0a;
+  --surface: #121212;
+  --surface-2: #1c1c1c;
+  --border: #2c2c2c;
 
-  --text: #e7ecf5;
-  --text-dim: #9aa5b9;
-  --text-faint: #6b7488;
+  --text: #ffffff;
+  --text-dim: #b3b3b3;
+  --text-faint: #777777;
 
-  --cyan: #00d4ff;
-  --purple: #7b2ff7;
-  --gradient: linear-gradient(135deg, var(--cyan), var(--purple));
+  --cyan: #ffffff;
+  --purple: #ffffff;
+  --gradient: linear-gradient(135deg, #ffffff, #cfcfcf);
 
   --radius-sm: 8px;
   --radius: 14px;
   --radius-lg: 22px;
 
-  --shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
-  --shadow-glow: 0 0 40px rgba(0, 212, 255, 0.15);
+  --shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+  --shadow-glow: 0 0 40px rgba(255, 255, 255, 0.15);
 
   --font-heading: "Space Grotesk", sans-serif;
   --font-body: "Inter", sans-serif;
@@ -39,6 +39,46 @@ body {
   font-family: var(--font-body);
   line-height: 1.6;
   overflow-x: hidden;
+}
+
+.bg-watermark {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  width: 62vmin;
+  height: 62vmin;
+  transform: translate(-50%, -50%);
+  z-index: -1;
+  pointer-events: none;
+  animation: watermarkPulse 10s ease-in-out infinite alternate;
+}
+
+.bg-watermark svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.bg-watermark path {
+  fill: none;
+  stroke-linecap: square;
+  stroke-linejoin: round;
+}
+
+.bg-watermark__shadow {
+  stroke: #000000;
+  stroke-width: 5.4;
+  opacity: 0.5;
+}
+
+.bg-watermark__front {
+  stroke: url(#zWatermarkGrad);
+  stroke-width: 5;
+}
+
+@keyframes watermarkPulse {
+  from { opacity: 0.14; }
+  to { opacity: 0.26; }
 }
 
 img { max-width: 100%; display: block; }
@@ -79,7 +119,7 @@ ul { list-style: none; }
 }
 
 .section--alt {
-  background: var(--bg-alt);
+  background: rgba(10, 10, 10, 0.94);
   border-top: 1px solid var(--border);
   border-bottom: 1px solid var(--border);
 }
@@ -160,7 +200,7 @@ ul { list-style: none; }
   width: 100%;
   height: var(--header-h);
   z-index: 1000;
-  background: rgba(10, 14, 23, 0.7);
+  background: rgba(0, 0, 0, 0.7);
   backdrop-filter: blur(14px);
   -webkit-backdrop-filter: blur(14px);
   border-bottom: 1px solid transparent;
@@ -169,7 +209,7 @@ ul { list-style: none; }
 
 .header.is-scrolled {
   border-bottom-color: var(--border);
-  background: rgba(10, 14, 23, 0.92);
+  background: rgba(0, 0, 0, 0.92);
 }
 
 .header__inner {
@@ -281,8 +321,8 @@ ul { list-style: none; }
   inset: 0;
   z-index: -1;
   background:
-    radial-gradient(600px 400px at 15% 20%, rgba(0, 212, 255, 0.14), transparent 60%),
-    radial-gradient(600px 500px at 85% 30%, rgba(123, 47, 247, 0.16), transparent 60%);
+    radial-gradient(600px 400px at 15% 20%, rgba(255, 255, 255, 0.08), transparent 60%),
+    radial-gradient(600px 500px at 85% 30%, rgba(255, 255, 255, 0.06), transparent 60%);
 }
 
 .hero__inner {
@@ -530,6 +570,81 @@ ul { list-style: none; }
 }
 
 /* =========================================================
+   Automações de Alto Impacto
+========================================================= */
+.impact__grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+  margin-bottom: 40px;
+}
+
+.impact-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 32px;
+  transition: transform 0.25s ease, border-color 0.25s ease;
+}
+
+.impact-card:hover {
+  transform: translateY(-6px);
+  border-color: var(--cyan);
+}
+
+.impact-card__icon {
+  font-size: 1.8rem;
+  margin-bottom: 14px;
+}
+
+.impact-card__name {
+  display: block;
+  font-family: var(--font-heading);
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: var(--text-faint);
+  text-transform: uppercase;
+  margin-bottom: 12px;
+}
+
+.impact-card__hook {
+  font-family: var(--font-heading);
+  font-size: 1.3rem;
+  font-weight: 600;
+  line-height: 1.35;
+  margin-bottom: 14px;
+}
+
+.impact-card__desc {
+  color: var(--text-dim);
+  font-size: 0.92rem;
+}
+
+.impact__stack {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.impact__stack-label {
+  font-family: var(--font-heading);
+  font-size: 0.85rem;
+  color: var(--text-faint);
+}
+
+.impact__stack-badge {
+  font-family: var(--font-heading);
+  font-size: 0.8rem;
+  font-weight: 600;
+  border: 1px solid var(--border);
+  padding: 6px 16px;
+  border-radius: 999px;
+  color: var(--text);
+}
+
+/* =========================================================
    Portfólio
 ========================================================= */
 .portfolio__grid {
@@ -562,7 +677,7 @@ ul { list-style: none; }
   position: relative;
   height: 160px;
   background:
-    linear-gradient(135deg, rgba(0, 212, 255, 0.08), rgba(123, 47, 247, 0.1)),
+    linear-gradient(135deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.02)),
     repeating-linear-gradient(45deg, var(--surface-2) 0, var(--surface-2) 10px, var(--bg-alt) 10px, var(--bg-alt) 20px);
   display: flex;
   align-items: center;
@@ -578,11 +693,19 @@ ul { list-style: none; }
   padding: 0 16px;
 }
 
+.project-card__img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  padding: 20px;
+  background: var(--bg-alt);
+}
+
 .project-card__tag {
   position: absolute;
   top: 12px;
   left: 12px;
-  background: rgba(10, 14, 23, 0.75);
+  background: rgba(0, 0, 0, 0.75);
   border: 1px solid var(--border);
   color: var(--cyan);
   font-size: 0.72rem;
@@ -643,6 +766,12 @@ ul { list-style: none; }
 .project-card__link {
   margin-top: 4px;
   align-self: flex-start;
+}
+
+.project-card__links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
 }
 
 /* =========================================================
@@ -771,7 +900,7 @@ ul { list-style: none; }
    Footer
 ========================================================= */
 .footer {
-  background: var(--bg-alt);
+  background: rgba(10, 10, 10, 0.94);
   border-top: 1px solid var(--border);
   padding-top: 70px;
 }
@@ -878,6 +1007,7 @@ ul { list-style: none; }
 @media (max-width: 980px) {
   .about__grid { grid-template-columns: 1fr; }
   .services__grid { grid-template-columns: repeat(2, 1fr); }
+  .impact__grid { grid-template-columns: 1fr; }
   .portfolio__grid { grid-template-columns: repeat(2, 1fr); }
   .mission-grid { grid-template-columns: 1fr; }
   .contact__grid { grid-template-columns: 1fr; }

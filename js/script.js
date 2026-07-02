@@ -102,8 +102,8 @@ document.addEventListener("DOMContentLoaded", () => {
     e.preventDefault();
 
     if (!form.checkValidity()) {
-      feedback.textContent = "Por favor, preencha todos os campos obrigatórios.";
-      feedback.style.color = "#ff6b6b";
+      feedback.textContent = "⚠ Por favor, preencha todos os campos obrigatórios.";
+      feedback.style.color = "#ffffff";
       return;
     }
 
@@ -111,24 +111,24 @@ document.addEventListener("DOMContentLoaded", () => {
     const submitBtn = form.querySelector("button[type='submit']");
 
     if (!window.emailjs || EMAILJS_PUBLIC_KEY === "SUA_PUBLIC_KEY_AQUI") {
-      feedback.textContent = "Formulário ainda não configurado. Configure o EmailJS em js/script.js.";
-      feedback.style.color = "#ff6b6b";
+      feedback.textContent = "⚠ Formulário ainda não configurado. Configure o EmailJS em js/script.js.";
+      feedback.style.color = "#ffffff";
       return;
     }
 
     submitBtn.disabled = true;
     feedback.textContent = "Enviando...";
-    feedback.style.color = "#9aa5b9";
+    feedback.style.color = "#b3b3b3";
 
     emailjs.sendForm(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, form)
       .then(() => {
-        feedback.textContent = `Obrigado, ${name}! Sua mensagem foi enviada. Em breve entraremos em contato.`;
-        feedback.style.color = "#00d4ff";
+        feedback.textContent = `✓ Obrigado, ${name}! Sua mensagem foi enviada. Em breve entraremos em contato.`;
+        feedback.style.color = "#ffffff";
         form.reset();
       })
       .catch(() => {
-        feedback.textContent = "Não foi possível enviar sua mensagem agora. Tente novamente ou use o e-mail zylossys@gmail.com.";
-        feedback.style.color = "#ff6b6b";
+        feedback.textContent = "⚠ Não foi possível enviar sua mensagem agora. Tente novamente ou use o e-mail zylossys@gmail.com.";
+        feedback.style.color = "#ffffff";
       })
       .finally(() => {
         submitBtn.disabled = false;

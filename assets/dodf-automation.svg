@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 160">
+  <g stroke="#ffffff" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round">
+    <!-- documento -->
+    <rect x="20" y="30" width="70" height="100" rx="4"/>
+    <line x1="35" y1="55" x2="75" y2="55"/>
+    <line x1="35" y1="70" x2="75" y2="70"/>
+    <line x1="35" y1="85" x2="60" y2="85"/>
+
+    <!-- seta 1 -->
+    <line x1="108" y1="80" x2="150" y2="80"/>
+    <polyline points="140,70 150,80 140,90"/>
+
+    <!-- engrenagem (automação) -->
+    <circle cx="200" cy="80" r="34"/>
+    <circle cx="200" cy="80" r="11"/>
+    <line x1="200" y1="41" x2="200" y2="27"/>
+    <line x1="200" y1="119" x2="200" y2="133"/>
+    <line x1="161" y1="80" x2="147" y2="80"/>
+    <line x1="239" y1="80" x2="253" y2="80"/>
+    <line x1="172" y1="52" x2="162" y2="42"/>
+    <line x1="228" y1="108" x2="238" y2="118"/>
+    <line x1="172" y1="108" x2="162" y2="118"/>
+    <line x1="228" y1="52" x2="238" y2="42"/>
+
+    <!-- seta 2 -->
+    <line x1="250" y1="80" x2="292" y2="80"/>
+    <polyline points="282,70 292,80 282,90"/>
+
+    <!-- envelope (e-mail) -->
+    <rect x="310" y="50" width="70" height="50" rx="4"/>
+    <polyline points="310,55 345,85 380,55"/>
+  </g>
+</svg>
