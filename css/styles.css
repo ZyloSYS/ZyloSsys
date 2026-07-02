@@ -97,10 +97,7 @@ ul { list-style: none; }
 .accent { color: var(--cyan); }
 
 .accent-gradient {
-  background: var(--gradient);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
+  color: #ffffff;
 }
 
 .eyebrow {
@@ -377,10 +374,7 @@ ul { list-style: none; }
   font-family: var(--font-heading);
   font-size: 1.8rem;
   font-weight: 700;
-  background: var(--gradient);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
+  color: #ffffff;
 }
 
 .stat__label {
