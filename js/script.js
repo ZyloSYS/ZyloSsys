@@ -94,6 +94,57 @@ document.addEventListener("DOMContentLoaded", () => {
   window.addEventListener("scroll", onScroll);
   onScroll();
 
+  /* ---------- Tema claro/escuro ---------- */
+  const themeToggle = document.getElementById("themeToggle");
+  const themeIcon = document.getElementById("themeIcon");
+
+  const applyThemeUI = (theme) => {
+    themeIcon.textContent = theme === "light" ? "☀" : "🌙";
+  };
+
+  const setTheme = (theme) => {
+    document.documentElement.setAttribute("data-theme", theme);
+    localStorage.setItem("zylo-theme", theme);
+    applyThemeUI(theme);
+  };
+
+  applyThemeUI(document.documentElement.getAttribute("data-theme") || "dark");
+
+  themeToggle.addEventListener("click", () => {
+    const current = document.documentElement.getAttribute("data-theme") === "light" ? "light" : "dark";
+    setTheme(current === "light" ? "dark" : "light");
+  });
+
+  /* ---------- Modais dos fundadores ---------- */
+  const openModal = (id) => {
+    const modal = document.getElementById(id);
+    if (!modal) return;
+    modal.classList.add("is-open");
+    modal.setAttribute("aria-hidden", "false");
+    document.body.style.overflow = "hidden";
+  };
+
+  const closeModal = (modal) => {
+    if (!modal) return;
+    modal.classList.remove("is-open");
+    modal.setAttribute("aria-hidden", "true");
+    document.body.style.overflow = "";
+  };
+
+  document.querySelectorAll("[data-modal-open]").forEach((btn) => {
+    btn.addEventListener("click", () => openModal(btn.getAttribute("data-modal-open")));
+  });
+
+  document.querySelectorAll("[data-modal-close]").forEach((el) => {
+    el.addEventListener("click", () => closeModal(el.closest(".founder-modal")));
+  });
+
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") {
+      document.querySelectorAll(".founder-modal.is-open").forEach(closeModal);
+    }
+  });
+
   /* ---------- Formulário de contato (estático) ---------- */
   const form = document.getElementById("contactForm");
   const feedback = document.getElementById("formFeedback");
@@ -103,7 +154,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     if (!form.checkValidity()) {
       feedback.textContent = "⚠ Por favor, preencha todos os campos obrigatórios.";
-      feedback.style.color = "#ffffff";
+      feedback.classList.add("is-active");
       return;
     }
 
@@ -112,23 +163,23 @@ document.addEventListener("DOMContentLoaded", () => {
 
     if (!window.emailjs || EMAILJS_PUBLIC_KEY === "SUA_PUBLIC_KEY_AQUI") {
       feedback.textContent = "⚠ Formulário ainda não configurado. Configure o EmailJS em js/script.js.";
-      feedback.style.color = "#ffffff";
+      feedback.classList.add("is-active");
       return;
     }
 
     submitBtn.disabled = true;
     feedback.textContent = "Enviando...";
-    feedback.style.color = "#b3b3b3";
+    feedback.classList.remove("is-active");
 
     emailjs.sendForm(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, form)
       .then(() => {
         feedback.textContent = `✓ Obrigado, ${name}! Sua mensagem foi enviada. Em breve entraremos em contato.`;
-        feedback.style.color = "#ffffff";
+        feedback.classList.add("is-active");
         form.reset();
       })
       .catch(() => {
         feedback.textContent = "⚠ Não foi possível enviar sua mensagem agora. Tente novamente ou use o e-mail zylossys@gmail.com.";
-        feedback.style.color = "#ffffff";
+        feedback.classList.add("is-active");
       })
       .finally(() => {
         submitBtn.disabled = false;

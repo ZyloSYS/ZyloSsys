@@ -9,6 +9,12 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/styles.css">
+<script>
+  (function () {
+    var saved = localStorage.getItem("zylo-theme");
+    document.documentElement.setAttribute("data-theme", saved === "light" ? "light" : "dark");
+  })();
+</script>
 </head>
 <body>
 
@@ -46,6 +52,10 @@
     </nav>
 
     <a href="#contato" class="btn btn--primary btn--small nav__cta">Fale conosco</a>
+
+    <button type="button" class="theme-switch__btn" id="themeToggle" aria-label="Alternar tema claro/escuro">
+      <span id="themeIcon">🌙</span>
+    </button>
 
     <button class="nav__toggle" id="navToggle" aria-label="Abrir menu">
       <span></span><span></span><span></span>
@@ -106,7 +116,7 @@
           <p>
             A <strong>Zylo</strong> nasceu em <strong>2025</strong> como uma startup de
             desenvolvimento de software, fundada por <strong>Gabriel Azevedo</strong> e
-            <strong>Gabriel Victor</strong>, estudantes do <strong>Instituto Federal de Brasília
+            <strong>Gabriel Vieira</strong>, estudantes do <strong>Instituto Federal de Brasília
             (IFB)</strong> com sólido conhecimento em desenvolvimento e tecnologia.
           </p>
           <p>
@@ -125,16 +135,16 @@
         </div>
 
         <div class="about__cards reveal">
-          <div class="founder-card">
-            <div class="founder-card__avatar">GA</div>
+          <button type="button" class="founder-card" data-modal-open="modal-gabriel-azevedo">
+            <img src="assets/fundadores/gabriel%20azevedo.jpg" alt="Gabriel Azevedo" class="founder-card__avatar">
             <h3>Gabriel Azevedo</h3>
             <span class="founder-card__role">Co-fundador</span>
-          </div>
-          <div class="founder-card">
-            <div class="founder-card__avatar">GV</div>
-            <h3>Gabriel Victor</h3>
+          </button>
+          <button type="button" class="founder-card" data-modal-open="modal-gabriel-victor">
+            <img src="assets/fundadores/gabriel%20victor.jpg" alt="Gabriel Vieira" class="founder-card__avatar">
+            <h3>Gabriel Vieira</h3>
             <span class="founder-card__role">Co-fundador</span>
-          </div>
+          </button>
         </div>
       </div>
 
@@ -510,12 +520,43 @@
   <div class="footer__bottom">
     <div class="container footer__bottom-inner">
       <span>© <span id="year"></span> Zylo. Todos os direitos reservados.</span>
-      <span>Fundada em 2025 por Gabriel Azevedo &amp; Gabriel Victor</span>
+      <span>Fundada em 2025 por Gabriel Azevedo &amp; Gabriel Vieira</span>
     </div>
   </div>
 </footer>
 
 <button id="backToTop" class="back-to-top" aria-label="Voltar ao topo">↑</button>
+
+<!-- ===== MODAIS DOS FUNDADORES ===== -->
+<div class="founder-modal" id="modal-gabriel-azevedo" aria-hidden="true">
+  <div class="founder-modal__overlay" data-modal-close></div>
+  <div class="founder-modal__panel" role="dialog" aria-modal="true" aria-labelledby="modal-gabriel-azevedo-title">
+    <button type="button" class="founder-modal__close" data-modal-close aria-label="Fechar">✕</button>
+    <img src="assets/fundadores/gabriel%20azevedo.jpg" alt="Gabriel Azevedo" class="founder-modal__avatar">
+    <h3 id="modal-gabriel-azevedo-title">Gabriel Azevedo</h3>
+    <span class="founder-modal__role">Co-fundador</span>
+    <p class="founder-modal__bio">Técnico em Desenvolvimento de Sistemas | Graduando em Ciência da Computação e Tecnologias em Sistemas para Internet</p>
+    <a href="https://www.linkedin.com/in/gabrielazevedomarques/" target="_blank" rel="noopener" class="founder-modal__linkedin">
+      <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.86 0-2.15 1.45-2.15 2.94v5.67H9.34V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.38-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.07 2.07 0 1 1 0-4.13 2.07 2.07 0 0 1 0 4.13zM7.12 20.45H3.56V9h3.56v11.45z"/></svg>
+      LinkedIn
+    </a>
+  </div>
+</div>
+
+<div class="founder-modal" id="modal-gabriel-victor" aria-hidden="true">
+  <div class="founder-modal__overlay" data-modal-close></div>
+  <div class="founder-modal__panel" role="dialog" aria-modal="true" aria-labelledby="modal-gabriel-victor-title">
+    <button type="button" class="founder-modal__close" data-modal-close aria-label="Fechar">✕</button>
+    <img src="assets/fundadores/gabriel%20victor.jpg" alt="Gabriel Vieira" class="founder-modal__avatar">
+    <h3 id="modal-gabriel-victor-title">Gabriel Vieira</h3>
+    <span class="founder-modal__role">Co-fundador</span>
+    <p class="founder-modal__bio">Estudante de Ciência da Computação | Data Science | Python | Google Cloud | BigQuery | Looker | Automação | Desenvolvimento Web</p>
+    <a href="https://www.linkedin.com/in/gabriel-vieiran/" target="_blank" rel="noopener" class="founder-modal__linkedin">
+      <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.86 0-2.15 1.45-2.15 2.94v5.67H9.34V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.38-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.07 2.07 0 1 1 0-4.13 2.07 2.07 0 0 1 0 4.13zM7.12 20.45H3.56V9h3.56v11.45z"/></svg>
+      LinkedIn
+    </a>
+  </div>
+</div>
 
 <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 <script src="js/script.js"></script>
